@@ -1,6 +1,10 @@
 import { getUrl } from "@/lib/url";
 import { redirect } from "next/navigation";
 
+export function generateStaticParams() {
+    return [];
+}
+
 export default async function RedirectPage({ params }: { params: { alias: string } }) {
     console.log("Alias received:", params.alias); // Debugging step
 
