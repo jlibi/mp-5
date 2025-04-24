@@ -14,3 +14,4 @@ export default async function RedirectPage({ params }: { params: Promise<{ alias
 
     redirect(entry.url);
 }
+
