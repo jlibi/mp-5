@@ -1,14 +1,12 @@
 import { getUrl } from "@/lib/url";
 import { redirect } from "next/navigation";
 
-export function generateStaticParams() {
-    return [];
-}
+export default async function RedirectPage({ params }: { params: Promise<{ alias: string }> }) {
+    // Await params—if it's not a Promise it will be wrapped in Promise.resolve
+    const resolvedParams = await params;
+    console.log("Alias received:", resolvedParams.alias);
 
-export default async function RedirectPage({ params }: { params: { alias: string } }) {
-    console.log("Alias received:", params.alias); // Debugging step
-
-    const entry = await getUrl(params.alias);
+    const entry = await getUrl(resolvedParams.alias);
 
     if (!entry) {
         return <p>Alias not found</p>;
